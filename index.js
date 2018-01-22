@@ -1,9 +1,14 @@
 let countdown;
 const timerDisplay = document.querySelector('.display__time-left');
 const timerButton = document.querySelectorAll('.timer__button');
-const minuteForm = document.querySelector('[name="minutes"]');
+const minuteInput = document.querySelector('[name="minutes"]');
+const formInput = document.querySelector('#custom');
 
-minuteForm.addEventListener('change', (e) => {
+formInput.addEventListener('submit', (e) => {
+	e.preventDefault();
+});
+
+minuteInput.addEventListener('change', (e) => {
 	if(e.target.value.trim() == ''){
 		return;
 	}
@@ -22,13 +27,13 @@ timerButton.forEach((button) => {
 const clearCountdown = () => {
 	clearInterval(countdown);
 	timerDisplay.textContent = '0:00'
-}
+};
 
 //clears the interval, resets view content, restarts timer with new time
 const restartTimer = (time) => {
 	clearCountdown();
 	timer(time);
-}
+};
 
 //starts the timer
 const timer = (seconds) => {
@@ -42,12 +47,12 @@ const timer = (seconds) => {
 		secondsLeft <= 0 ? clearInterval(countdown) : '';
 	}, 1000);
 
-}
+};
 
 //handles changing the view
 function displayTimeLeft(secondsLeft){
 	const minutes = Math.floor(secondsLeft / 60);
 	const seconds = secondsLeft % 60;
-	const display = `${minutes}:${seconds}`
-	timerDisplay.textContent = display;
+	timerDisplay.textContent = `${minutes}:${seconds}`;
 }
+
