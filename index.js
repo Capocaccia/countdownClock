@@ -12,7 +12,6 @@ minuteInput.addEventListener('change', (e) => {
 	if(e.target.value.trim() == ''){
 		return;
 	}
-	clearCountdown();
 	restartTimer(e.target.value * 60)
 });
 
